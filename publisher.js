@@ -18,11 +18,12 @@ async function createTopic() {
   }
 }
 
-async function publishMessage() {
-  const data = JSON.stringify({message: 'Hello, Pub/Sub!'});
+async function publishMessage(tmp) {
+  const data = JSON.stringify({message: 'Hello, Pub/Sub!',tmp});
   try {
     const messageId = await pubsub.topic(topicName).publish(Buffer.from(data));
     console.log(`Message ${messageId} published.`);
+    // console.log(`Message TMP : ${tmp} .`);
   } catch (error) {
     console.error('Error publishing message:', error);
   }
@@ -30,9 +31,9 @@ async function publishMessage() {
 
 async function main() {
   await createTopic();
-await publishMessage() 
-await publishMessage() 
-await publishMessage() 
+  for (let i=0;i<10 ;i++){
+  await  publishMessage(i)
+  }
 }
 
 main().catch(console.error);

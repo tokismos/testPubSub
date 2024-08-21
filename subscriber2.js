@@ -15,7 +15,7 @@ function listenForMessages() {
     console.log(`Received message ${message.id}:`);
     console.log(`\tData: ${message.data}`);
     console.log(`\tAttributes: ${JSON.stringify(message.attributes)}`);
-    message.ack();
+    // message.ack();
   };
 
   subscription.on('message', messageHandler);
